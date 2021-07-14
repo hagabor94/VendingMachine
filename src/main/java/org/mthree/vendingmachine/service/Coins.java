@@ -1,12 +1,12 @@
-package org.mthree.vendingmachine.ui;
+package org.mthree.vendingmachine.service;
 
 import java.math.BigDecimal;
 
 public enum Coins {
-    PENNY(new BigDecimal("0.01")),
-    NICKEL(new BigDecimal("0.05")),
-    DIME(new BigDecimal("0.10")),
-    QUARTER(new BigDecimal("0.25"));
+    PENNY( BigDecimal.valueOf(0.01)),
+    NICKEL(BigDecimal.valueOf(0.05)),
+    DIME(BigDecimal.valueOf(0.10)),
+    QUARTER(BigDecimal.valueOf(0.25));
 
     private final BigDecimal value;
 

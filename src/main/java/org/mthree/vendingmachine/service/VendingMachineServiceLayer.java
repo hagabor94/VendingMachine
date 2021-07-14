@@ -5,6 +5,7 @@ import org.mthree.vendingmachine.dto.Item;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 public interface VendingMachineServiceLayer {
     List<Item> getAllItems() throws VendingMachinePersistenceException;
@@ -15,4 +16,6 @@ public interface VendingMachineServiceLayer {
             VendingMachineNoSuchItemException;
 
     Item editItem(int id) throws VendingMachinePersistenceException;
+
+    Map<Coins, Integer> changeToCoins(BigDecimal change);
 }

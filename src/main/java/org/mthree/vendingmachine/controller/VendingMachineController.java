@@ -27,7 +27,7 @@ public class VendingMachineController {
                 BigDecimal funds = view.getFunds();
                 try {
                     int choice = view.getItemId();
-                    view.displayChange(service.getItem(choice,funds));
+                    view.displayChange(service.changeToCoins(service.getItem(choice,funds)));
                 } catch (VendingMachineNoItemInventoryException | VendingMachineIsufficientFundsException | VendingMachineNoSuchItemException e){
                     view.displayError(e.getMessage());
                 }

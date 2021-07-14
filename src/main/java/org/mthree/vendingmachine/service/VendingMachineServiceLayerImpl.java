@@ -6,7 +6,9 @@ import org.mthree.vendingmachine.dao.VendingMachinePersistenceException;
 import org.mthree.vendingmachine.dto.Item;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class VendingMachineServiceLayerImpl implements VendingMachineServiceLayer{
 
@@ -52,4 +54,56 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         auditDao.writeAuditEntry("ITEM SERVED : "+editedItem.getName()+" QUANTITY : "+editedItem.getQuantity());
         return editedItem;
     }
+
+    @Override
+    public Map<Coins, Integer> changeToCoins(BigDecimal change) {
+        BigDecimal remainingChange = new BigDecimal(String.valueOf(change));
+        Map<Coins, Integer> coins = new HashMap<>();
+        int coinCounter = 0;
+        while( !(BigDecimal.valueOf(1).compareTo(remainingChange.divide(Coins.QUARTER.getValue())) == 1)){
+            coinCounter++;
+            remainingChange = remainingChange.subtract(Coins.QUARTER.getValue());
+        }
+        if(coinCounter > 0)
+            coins.put(Coins.QUARTER, coinCounter);
+
+        coinCounter = 0;
+        while( !(BigDecimal.valueOf(1).compareTo(remainingChange.divide(Coins.DIME.getValue())) == 1)){
+            coinCounter++;
+            remainingChange = remainingChange.subtract(Coins.DIME.getValue());
+        }
+        if(coinCounter > 0)
+            coins.put(Coins.DIME, coinCounter);
+
+        coinCounter = 0;
+        while( !(BigDecimal.valueOf(1).compareTo(remainingChange.divide(Coins.NICKEL.getValue())) == 1)){
+            coinCounter++;
+            remainingChange = remainingChange.subtract(Coins.NICKEL.getValue());
+        }
+        if(coinCounter > 0)
+            coins.put(Coins.NICKEL, coinCounter);
+
+        coinCounter = 0;
+        while( !(BigDecimal.valueOf(1).compareTo(remainingChange.divide(Coins.PENNY.getValue())) == 1)){
+            coinCounter++;
+            remainingChange = remainingChange.subtract(Coins.PENNY.getValue());
+        }
+        if(coinCounter > 0)
+            coins.put(Coins.PENNY, coinCounter);
+
+
+        return coins;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+

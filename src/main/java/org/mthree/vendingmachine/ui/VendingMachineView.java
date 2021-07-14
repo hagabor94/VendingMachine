@@ -1,9 +1,12 @@
 package org.mthree.vendingmachine.ui;
 
 import org.mthree.vendingmachine.dto.Item;
+import org.mthree.vendingmachine.service.Coins;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class VendingMachineView {
     private UserIO io;
@@ -25,8 +28,13 @@ public class VendingMachineView {
         return new BigDecimal(io.readString("How much money do you put in? ($)"));
     }
 
-    public void displayChange(BigDecimal change){
-        io.print("Change: $"+change);
+    public void displayChange(Map<Coins, Integer> coins){
+        io.print("CHANGE :");
+        Set<Coins> coinTypes = coins.keySet();
+
+        for (Coins c : coinTypes){
+            io.print(c.toString()+" : "+coins.get(c));
+        }
     }
 
     public void displayError(String message){io.print("ERROR! "+message);}
