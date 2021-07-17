@@ -2,15 +2,19 @@ package org.mthree.vendingmachine.ui;
 
 import org.mthree.vendingmachine.dto.Item;
 import org.mthree.vendingmachine.service.Coins;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+@Component
 public class VendingMachineView {
     private UserIO io;
 
+    @Autowired
     public VendingMachineView(UserIO io){this.io = io;}
 
     public void printMenu(List<Item> itemList){

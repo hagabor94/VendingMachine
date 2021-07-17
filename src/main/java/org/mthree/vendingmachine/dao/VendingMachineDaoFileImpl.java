@@ -1,11 +1,13 @@
 package org.mthree.vendingmachine.dao;
 
 import org.mthree.vendingmachine.dto.Item;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 
+@Component
 public class VendingMachineDaoFileImpl implements VendingMachineDao{
 
     private final String ITEMS_FILE;

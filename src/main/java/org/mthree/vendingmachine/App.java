@@ -10,16 +10,22 @@ import org.mthree.vendingmachine.service.VendingMachineServiceLayerImpl;
 import org.mthree.vendingmachine.ui.UserIO;
 import org.mthree.vendingmachine.ui.UserIOConsoleImpl;
 import org.mthree.vendingmachine.ui.VendingMachineView;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App {
     public static void main(String[] args) {
-        UserIO io = new UserIOConsoleImpl();
+        /* UserIO io = new UserIOConsoleImpl();
         VendingMachineView view = new VendingMachineView(io);
         VendingMachineDao dao = new VendingMachineDaoFileImpl();
         VendingMachineAuditDao audit = new VendingMachineAuditDaoFileImpl();
         VendingMachineServiceLayer service = new VendingMachineServiceLayerImpl(dao,audit);
-        VendingMachineController controller = new VendingMachineController(service,view);
+        VendingMachineController controller = new VendingMachineController(service,view);*/
 
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+        ctx.scan("org.mthree.vendingmachine");
+        ctx.refresh();
+
+        VendingMachineController controller = ctx.getBean("vendingMachineController", VendingMachineController.class);
         controller.run();
     }
 }

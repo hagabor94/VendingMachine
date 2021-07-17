@@ -4,17 +4,21 @@ import org.mthree.vendingmachine.dao.VendingMachineAuditDao;
 import org.mthree.vendingmachine.dao.VendingMachineDao;
 import org.mthree.vendingmachine.dao.VendingMachinePersistenceException;
 import org.mthree.vendingmachine.dto.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class VendingMachineServiceLayerImpl implements VendingMachineServiceLayer{
 
     private VendingMachineDao dao;
     private VendingMachineAuditDao auditDao;
 
+    @Autowired
     public VendingMachineServiceLayerImpl(VendingMachineDao dao, VendingMachineAuditDao auditDao){
         this.dao = dao;
         this.auditDao = auditDao;
