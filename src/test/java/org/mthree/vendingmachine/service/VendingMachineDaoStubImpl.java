@@ -3,10 +3,12 @@ package org.mthree.vendingmachine.service;
 import org.mthree.vendingmachine.dao.VendingMachineDao;
 import org.mthree.vendingmachine.dao.VendingMachinePersistenceException;
 import org.mthree.vendingmachine.dto.Item;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class VendingMachineDaoStubImpl implements VendingMachineDao {
 

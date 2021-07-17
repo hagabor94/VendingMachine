@@ -3,12 +3,14 @@ package org.mthree.vendingmachine.dao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mthree.vendingmachine.dto.Item;
+import org.springframework.stereotype.Component;
 
 import java.io.FileWriter;
 import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 class VendingMachineDaoFileImplTest {
     VendingMachineDao dao;

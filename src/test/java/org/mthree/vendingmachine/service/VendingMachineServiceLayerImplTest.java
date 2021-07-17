@@ -5,6 +5,11 @@ import org.mthree.vendingmachine.dao.VendingMachineAuditDao;
 import org.mthree.vendingmachine.dao.VendingMachineDao;
 import org.mthree.vendingmachine.dao.VendingMachinePersistenceException;
 import org.mthree.vendingmachine.dto.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
@@ -15,9 +20,13 @@ class VendingMachineServiceLayerImplTest {
     private VendingMachineServiceLayer service;
 
     public VendingMachineServiceLayerImplTest(){
-        VendingMachineDao dao = new VendingMachineDaoStubImpl();
+        /*VendingMachineDao dao = new VendingMachineDaoStubImpl();
         VendingMachineAuditDao audit = new VendingMachineAuditDaoStubImpl();
-        service = new VendingMachineServiceLayerImpl(dao,audit);
+        service = new VendingMachineServiceLayerImpl(dao,audit);*/
+
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        service = ctx.getBean("serviceLayer", VendingMachineServiceLayer.class);
+
     }
 
     @Test
